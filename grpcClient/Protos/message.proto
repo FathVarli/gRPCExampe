@@ -1,0 +1,21 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "grpcClient";
+
+package message;
+
+service Message {
+ rpc SendMessageUnary (MessageRequest) returns (MessageResponse);
+ rpc SendMessageServerStreaming (MessageRequest) returns (stream MessageResponse);
+ rpc SendMessageClientStreaming (stream MessageRequest) returns (MessageResponse);
+ rpc SendMessageBiDirectionalStreaming (stream MessageRequest) returns (stream MessageResponse);
+}
+
+message MessageRequest {
+  string name = 1;
+  string message = 2;
+}
+
+message MessageResponse {
+  string message = 1;
+}
